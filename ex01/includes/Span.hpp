@@ -13,14 +13,15 @@
 class Span
 {
     public:
+    typedef std::vector<int>::iterator iterator;
         Span();
         ~Span();
         Span(const Span &span);
         Span &operator=(const Span &span);
         Span(unsigned int N);
         void addNumber(int num);
-        int shortestSpan();
-        int longestSpan();
+        unsigned int shortestSpan();
+        unsigned int longestSpan();
         unsigned int getN() const;
         std::vector<int> getVec() const;
         class AlreadyFull: public std::exception

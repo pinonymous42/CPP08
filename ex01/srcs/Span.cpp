@@ -18,6 +18,11 @@ Span::Span(const Span &span)
         this->_vec.push_back(*i);
 }
 
+Span::Span(unsigned int N)
+{
+    this->_N = N;
+}
+
 Span &Span::operator=(const Span &span)
 {
     if (this != &span)
@@ -41,35 +46,29 @@ void Span::addNumber(int num)
     this->_vec.push_back(num);
 }
 
-int Span::shortestSpan()
+unsigned int Span::shortestSpan()
 {
-    if (this->_vec.size() == 0 || this->_vec.size() == 1)
+    if (this->_vec.size() <= 1)
         throw NoSpan();
-    int min = std::abs(this->_vec[1] - this->_vec[0]);
-    for (std::vector<int>::iterator tmp = this->_vec.begin() + 1; tmp != this->_vec.end() - 1; tmp++)
+    int min = Span::longestSpan();
+    for (iterator i  = this->_vec.begin(); i != this->_vec.end(); i++)
     {
-        if (min > std::abs(*(tmp + 1) - *tmp))
-            min = std::abs(*(tmp + 1) - *tmp);
+        for (iterator j = this->_vec.begin(); j != this->_vec.end(); j++)
+        {
+            if (min > std::abs(*i - *j))
+                min = std::abs(*i - *j);
+        }
     }
     return (min);
 }
 
-int Span::longestSpan()
+unsigned int Span::longestSpan()
 {
-    if (this->_vec.size() == 0 || this->_vec.size() == 1)
+    if (this->_vec.size() <= 1)
         throw NoSpan();
-    int max = std::abs(this->_vec[1] - this->_vec[0]);
-    for (std::vector<int>::iterator tmp = this->_vec.begin() + 1; tmp != this->_vec.end() - 1; tmp++)
-    {
-        if (max < std::abs(*(tmp + 1) - *tmp))
-            max = std::abs(*(tmp + 1) - *tmp);
-    }
+    unsigned int max = *std::max_element(this->_vec.begin(), this->_vec.end())
+        - *std::min_element(this->_vec.begin(), this->_vec.end());
     return (max);
-}
-
-Span::Span(unsigned int N)
-{
-    this->_N = N;
 }
 
 unsigned int Span::getN() const
