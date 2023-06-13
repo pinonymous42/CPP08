@@ -10,6 +10,11 @@ int main()
         sp.addNumber(17);
         sp.addNumber(9);
         sp.addNumber(11);
+
+
+        // Span sp1 = Span(10);
+        // sp1.addNumber(100);
+        // sp1.addNumber(sp.begin(), sp.end());
         
         // Span sp = Span(10000);
         // for (int i = 0; i < 10000; i++)
@@ -23,6 +28,8 @@ int main()
         // sp.addNumber(0);
         // sp.addNumber(INT_MAX);
         // sp.addNumber(INT_MIN);
+        // for (std::vector<int>::iterator i = sp1.begin(); i != sp1.end(); i++)
+        //     std::cout << *i << std::endl;
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
         return 0;

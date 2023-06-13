@@ -23,11 +23,10 @@ class ElementNotFound: public std::exception
 
 template <typename T> typename T::iterator easyfind(T &containers, int to_find)
 {
-    for (typename T::iterator ptr = containers.begin(); ptr != containers.end(); ptr++)
-    {
-        if (*ptr == to_find)
-            return (ptr);
-    }
-    throw ElementNotFound();
+    typename T::iterator tmp = std::find(containers.begin(), containers.end(), to_find);
+    if (tmp == containers.end())
+        throw ElementNotFound();
+    return (tmp);
+
 }
 #endif

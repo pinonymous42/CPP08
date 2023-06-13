@@ -20,10 +20,15 @@ class Span
         Span &operator=(const Span &span);
         Span(unsigned int N);
         void addNumber(int num);
+        void addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end);
         unsigned int shortestSpan();
         unsigned int longestSpan();
         unsigned int getN() const;
         std::vector<int> getVec() const;
+        std::vector<int>::iterator begin();
+        std::vector<int>::const_iterator begin() const;
+        std::vector<int>::iterator end();
+        std::vector<int>::const_iterator end() const;
         class AlreadyFull: public std::exception
         {
             public:
